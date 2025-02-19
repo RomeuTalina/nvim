@@ -18,7 +18,7 @@ if vim.g.neovide then
 end
 
 --SET THE THEME--
-vim.cmd.colorscheme("rose-pine")
+vim.cmd.colorscheme("github_dark_dimmed")
 
 
 --KEYMAPS--
