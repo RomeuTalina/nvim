@@ -1,7 +1,7 @@
 return{
     {
         "neovim/nvim-lspconfig",
-    dependencies = {"williamboman/mason-lspconfig.nvim", 
+    dependencies = {"williamboman/mason-lspconfig.nvim",
                     "saghen/blink.cmp"},
     config = function()
         local capabilities = require('blink.cmp').get_lsp_capabilities()
@@ -22,6 +22,16 @@ return{
             capabilities = capabilities,
         })
         lspconfig.lua_ls.setup({
+            capabilities = capabilities,
+            settings = {
+                Lua = {
+                    diagnostics = {
+                        globals = { 'vim' }
+                    }
+                }
+            }
+        })
+        lspconfig.gopls.setup({
             capabilities = capabilities
         })
     end

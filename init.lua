@@ -20,6 +20,23 @@ end
 --SET THE THEME--
 vim.cmd.colorscheme("github_dark_dimmed")
 
+local opaque_bg = vim.api.nvim_get_hl_by_name("Normal", true).background
+
+vim.api.nvim_set_hl(0, "Normal", {bg = "none"})
+vim.api.nvim_set_hl(0, "NormalFloat", {bg = "none"})
+
+function toggle_transparency()
+    local hl = vim.api.nvim_get_hl(0, { name = "Normal" })
+    if hl.bg == nil then
+        vim.api.nvim_set_hl(0, "Normal", { bg = opaque_bg })
+        vim.api.nvim_set_hl(0, "NormalFloat", { bg = opaque_bg })
+    else
+        vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+        vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+    end
+end
+
+vim.keymap.set("n", "<leader>tt", ":lua toggle_transparency()<CR>", {noremap = true, silent = true})
 
 --KEYMAPS--
 vim.g.mapleader = ' '
